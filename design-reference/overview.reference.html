@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Worklog — Terminal-inspired</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap">
+<style>
+body{margin:0;background:#0F1210}
+a{color:#5EE89B}a:hover{color:#8DF2B9}
+</style>
+</helmet>
+<div style="min-height: 860px; display: flex; flex-wrap: wrap; background: #0F1210; color: #E6ECE6; font-family: 'IBM Plex Sans', system-ui, sans-serif">
+
+<nav aria-label="Main" style="flex: 1 1 210px; max-width: 100%; box-sizing: border-box; padding: 16px 12px; border-right: 1px solid #222823; background: #0C0F0D; display: flex; flex-direction: column; gap: 22px">
+<div style="display: flex; gap: 8px; padding: 2px 4px" aria-hidden="true">
+<span style="width: 12px; height: 12px; border-radius: 6px; background: #FF5F57"></span>
+<span style="width: 12px; height: 12px; border-radius: 6px; background: #FEBC2E"></span>
+<span style="width: 12px; height: 12px; border-radius: 6px; background: #28C840"></span>
+</div>
+<div style="display: flex; align-items: center; gap: 8px; padding: 0 6px; font: 600 16px 'IBM Plex Mono', monospace"><span style="color: #5EE89B">~/</span>worklog<span style="width: 8px; height: 17px; background: #5EE89B; display: inline-block" aria-hidden="true"></span></div>
+<div style="display: flex; flex-direction: column; gap: 2px">
+<sc-for list="{{nav}}" as="n" hint-placeholder-count="5">
+<a href="#" style="display: flex; align-items: center; gap: 10px; min-height: 36px; padding: 0 10px; border-radius: 8px; text-decoration: none; font-size: 14px; color: {{n.fg}}; background: {{n.bg}}"><span style="font: 500 12px 'IBM Plex Mono', monospace; color: {{n.keyColor}}; width: 14px">{{n.key}}</span>{{n.label}}<span style="margin-left: auto; font: 12px 'IBM Plex Mono', monospace; color: #8E9C8F">{{n.count}}</span></a>
+</sc-for>
+</div>
+<div style="display: flex; flex-direction: column; gap: 4px">
+<div style="font: 500 11px 'IBM Plex Mono', monospace; color: #8E9C8F; padding: 0 10px 4px">// repositories</div>
+<sc-for list="{{repos}}" as="r" hint-placeholder-count="3">
+<a href="#" style="display: flex; flex-direction: column; gap: 2px; padding: 8px 10px; border-radius: 8px; text-decoration: none; color: #E6ECE6">
+<span style="display: flex; align-items: center; gap: 8px; font-size: 13px"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="{{r.color}}" stroke-width="2.2" aria-hidden="true"><circle cx="6" cy="5" r="2.5"></circle><circle cx="6" cy="19" r="2.5"></circle><circle cx="18" cy="9" r="2.5"></circle><path d="M6 7.5v9M18 11.5c0 4-6 3-11 5.5"></path></svg>{{r.name}}</span>
+<span style="font: 11px 'IBM Plex Mono', monospace; color: #8E9C8F; padding-left: 21px">{{r.branch}} · {{r.count}} commits</span>
+</a>
+</sc-for>
+</div>
+<button type="button" style="margin-top: auto; min-height: 44px; border: 1px solid #2A322B; border-radius: 10px; background: #141815; color: #C7D2C8; font: 500 13px 'IBM Plex Mono', monospace; cursor: pointer">+ add repo</button>
+</nav>
+
+<main style="flex: 999 1 560px; min-width: 0; box-sizing: border-box; padding: 22px 28px 32px; display: flex; flex-direction: column; gap: 18px">
+<header style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px">
+<button type="button" style="flex: 1 1 320px; display: flex; align-items: center; gap: 10px; min-height: 42px; padding: 0 14px; border: 1px solid #2A322B; border-radius: 10px; background: #141815; color: #8E9C8F; font: 13px 'IBM Plex Mono', monospace; text-align: left; cursor: pointer"><span style="color: #5EE89B">❯</span>Search commits, tickets, tasks…<span style="margin-left: auto; font-size: 11px; color: #C7D2C8; border: 1px solid #2A322B; border-radius: 5px; padding: 1px 6px">⌘K</span></button>
+<div role="group" aria-label="Date range" style="display: flex; gap: 4px; padding: 3px; border: 1px solid #2A322B; border-radius: 10px; background: #141815">
+<sc-for list="{{ranges}}" as="r" hint-placeholder-count="4">
+<button type="button" onClick="{{r.pick}}" style="min-height: 34px; padding: 0 12px; border: 0; border-radius: 7px; background: {{r.bg}}; color: {{r.fg}}; font: 500 12px 'IBM Plex Mono', monospace; cursor: pointer">{{r.label}}</button>
+</sc-for>
+</div>
+<button type="button" style="min-height: 42px; padding: 0 16px; border: 0; border-radius: 10px; background: #5EE89B; color: #0B130E; font: 600 13px 'IBM Plex Sans', sans-serif; cursor: pointer">Export report</button>
+</header>
+
+<div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 10px">
+<h1 style="margin: 0; font-size: 24px; font-weight: 600; letter-spacing: -0.01em">Good evening — here's your {{rangeWord}}</h1>
+<span style="font: 12px 'IBM Plex Mono', monospace; color: #8E9C8F">author: me · 3 repos</span>
+</div>
+
+<section aria-label="Summary" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px">
+<sc-for list="{{stats}}" as="s" hint-placeholder-count="4">
+<div style="border: 1px solid #222823; border-radius: 12px; background: #141815; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px">
+<span style="font: 500 11px 'IBM Plex Mono', monospace; color: #8E9C8F">{{s.label}}</span>
+<span style="font: 600 26px 'IBM Plex Mono', monospace; letter-spacing: -0.02em">{{s.value}}</span>
+<span style="font: 12px 'IBM Plex Mono', monospace; color: {{s.noteColor}}">{{s.note}}</span>
+</div>
+</sc-for>
+</section>
+
+<div style="display: flex; flex-wrap: wrap; gap: 14px">
+<section aria-label="Weekly commits" style="flex: 3 1 440px; min-width: 0; border: 1px solid #222823; border-radius: 12px; background: #141815; padding: 16px 18px; display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; align-items: baseline; gap: 10px"><h2 style="margin: 0; font-size: 14px; font-weight: 600">Weekly commits</h2><span style="font: 11px 'IBM Plex Mono', monospace; color: #8E9C8F">// peak W35 · 28</span></div>
+<div role="img" aria-label="Weekly commits, 13 weeks" style="display: flex; align-items: flex-end; gap: 8px; height: 150px; background-image: radial-gradient(#252C26 1px, transparent 1px); background-size: 12px 12px; padding: 4px 2px 0">
+<sc-for list="{{bars}}" as="b" hint-placeholder-count="13">
+<div style="flex: 1; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; gap: 6px; height: 100%">
+<span style="font: 10px 'IBM Plex Mono', monospace; color: {{b.valColor}}">{{b.v}}</span>
+<div style="width: 100%; height: {{b.h}}; background: {{b.bg}}; border-radius: 3px 3px 0 0"></div>
+</div>
+</sc-for>
+</div>
+<div style="display: flex; gap: 8px; font: 10px 'IBM Plex Mono', monospace; color: #8E9C8F; padding: 0 2px">
+<sc-for list="{{bars}}" as="b" hint-placeholder-count="13"><span style="flex: 1; text-align: center">{{b.label}}</span></sc-for>
+</div>
+</section>
+
+<section aria-label="Tasks" style="flex: 2 1 320px; min-width: 0; border: 1px solid #222823; border-radius: 12px; background: #141815; padding: 16px 18px; display: flex; flex-direction: column; gap: 10px">
+<div style="display: flex; align-items: baseline; gap: 10px"><h2 style="margin: 0; font-size: 14px; font-weight: 600">Tasks</h2><span style="font: 11px 'IBM Plex Mono', monospace; color: #8E9C8F">{{openCount}} open</span></div>
+<div style="display: flex; align-items: center; gap: 8px; min-height: 40px; padding: 0 12px; border: 1px solid #2A322B; border-radius: 9px; background: #0F1210">
+<label for="addtask" style="font: 600 14px 'IBM Plex Mono', monospace; color: #5EE89B">+</label>
+<input id="addtask" type="text" value="{{draft}}" onChange="{{onDraft}}" onKeyDown="{{onKey}}" placeholder="New task, end with PROJ-123 · Enter" style="flex: 1; min-width: 0; min-height: 38px; border: 0; outline: none; background: transparent; color: #E6ECE6; font: 13px 'IBM Plex Mono', monospace; caret-color: #5EE89B">
+</div>
+<div style="display: flex; flex-direction: column">
+<sc-for list="{{tasks}}" as="t" hint-placeholder-count="5">
+<label style="display: flex; align-items: center; gap: 12px; min-height: 42px; border-bottom: 1px solid #1D231E; cursor: pointer">
+<input type="checkbox" checked="{{t.done}}" onChange="{{t.toggle}}" style="width: 16px; height: 16px; margin: 0; accent-color: #5EE89B">
+<span style="flex: 1; min-width: 0; font-size: 13px; color: {{t.color}}; text-decoration: {{t.strike}}">{{t.title}}</span>
+<span style="font: 500 11px 'IBM Plex Mono', monospace; color: #5EE89B; background: #17251C; padding: 2px 7px; border-radius: 5px">{{t.ticket}}</span>
+</label>
+</sc-for>
+</div>
+</section>
+</div>
+
+<div style="display: flex; flex-wrap: wrap; gap: 14px">
+<section aria-label="Commit history" style="flex: 3 1 440px; min-width: 0; border: 1px solid #222823; border-radius: 12px; background: #141815; padding: 16px 18px; display: flex; flex-direction: column">
+<div style="display: flex; align-items: baseline; gap: 10px; padding-bottom: 10px"><h2 style="margin: 0; font-size: 14px; font-weight: 600">Commit history</h2><a href="#" style="margin-left: auto; font: 12px 'IBM Plex Mono', monospace; text-decoration: none">git log →</a></div>
+<sc-for list="{{commits}}" as="c" hint-placeholder-count="5">
+<div style="display: flex; gap: 14px">
+<div style="width: 12px; display: flex; flex-direction: column; align-items: center" aria-hidden="true">
+<span style="width: 2px; height: 10px; background: {{c.lineTop}}"></span>
+<span style="width: 10px; height: 10px; border-radius: 5px; border: 2px solid {{c.color}}; box-sizing: border-box; background: #141815"></span>
+<span style="width: 2px; flex: 1; background: {{c.lineBottom}}"></span>
+</div>
+<div style="flex: 1; min-width: 0; padding: 4px 0 12px; display: flex; flex-direction: column; gap: 3px">
+<div style="display: flex; flex-wrap: wrap; gap: 10px; align-items: baseline">
+<a href="CommitDetail.dc.html" style="font-size: 13px; font-weight: 500; color: #E6ECE6; text-decoration: none">{{c.msg}}</a>
+<span style="margin-left: auto; font: 11px 'IBM Plex Mono', monospace; color: #8E9C8F">{{c.when}}</span>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 10px; font: 11px 'IBM Plex Mono', monospace">
+<span style="color: #F2C46D">{{c.sha}}</span><span style="color: #5EE89B">{{c.ticket}}</span><span style="color: #8E9C8F">{{c.repo}}</span><span><span style="color: #5EE89B">{{c.add}}</span> <span style="color: #F28B82">{{c.del}}</span></span>
+</div>
+</div>
+</div>
+</sc-for>
+</section>
+
+<section aria-label="Tickets" style="flex: 2 1 320px; min-width: 0; border: 1px solid #222823; border-radius: 12px; background: #141815; padding: 16px 18px; display: flex; flex-direction: column; gap: 4px">
+<div style="display: flex; align-items: baseline; gap: 10px; padding-bottom: 8px"><h2 style="margin: 0; font-size: 14px; font-weight: 600">Tickets</h2><span style="font: 11px 'IBM Plex Mono', monospace; color: #8E9C8F">37 done · 4 review · 3 active</span></div>
+<sc-for list="{{tickets}}" as="k" hint-placeholder-count="5">
+<a href="#" style="display: flex; align-items: center; gap: 10px; min-height: 44px; border-top: 1px solid #1D231E; text-decoration: none; color: #E6ECE6">
+<span style="width: 8px; height: 8px; border-radius: 4px; background: {{k.dot}}; flex: none" aria-hidden="true"></span>
+<span style="font: 500 12px 'IBM Plex Mono', monospace; color: #C7D2C8; width: 64px; flex: none">{{k.id}}</span>
+<span style="flex: 1; min-width: 0; font-size: 13px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap">{{k.title}}</span>
+<span style="font: 11px 'IBM Plex Mono', monospace; color: #8E9C8F">{{k.commits}}c</span>
+</a>
+</sc-for>
+</section>
+</div>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":860}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = {
+      range: 'qtr',
+      draft: '',
+      tasks: [
+        { title: 'Write migration plan for ledger v2', ticket: 'PAY-218', done: false },
+        { title: 'Review offline sync PR', ticket: 'MOB-97', done: false },
+        { title: 'Fix flaky checkout test', ticket: 'PAY-204', done: true },
+        { title: 'Prepare Q3 demo notes', ticket: '', done: false },
+        { title: 'Add role filter to user table', ticket: 'ADM-41', done: false }
+      ]
+    };
+  }
+  renderVals() {
+    var self = this;
+    var words = { wk: 'week', mo: 'month', qtr: 'quarter', yr: 'year' };
+    var ranges = ['wk', 'mo', 'qtr', 'yr'].map(function (l) {
+      var on = self.state.range === l;
+      return { label: l, bg: on ? '#243027' : 'transparent', fg: on ? '#5EE89B' : '#8E9C8F', pick: function () { self.setState({ range: l }); } };
+    });
+    var base = [14, 18, 12, 22, 19, 25, 16, 21, 28, 17, 23, 20, 13];
+    var bars = base.map(function (v, i) {
+      var peak = v === 28;
+      return { v: String(v), h: Math.round(v / 28 * 110) + 'px', bg: peak ? '#5EE89B' : '#2C5A3E', valColor: peak ? '#5EE89B' : '#8E9C8F', label: String(i + 27) };
+    });
+    var tasks = self.state.tasks.map(function (t, i) {
+      return {
+        title: t.title, ticket: t.ticket || '—', done: t.done,
+        color: t.done ? '#7C897D' : '#E6ECE6', strike: t.done ? 'line-through' : 'none',
+        toggle: function () {
+          var list = self.state.tasks.slice();
+          list[i] = Object.assign({}, list[i], { done: !list[i].done });
+          self.setState({ tasks: list });
+        }
+      };
+    });
+    var open = self.state.tasks.filter(function (t) { return !t.done; }).length;
+    var raw = [
+      { sha: 'a41f9c2', ticket: 'PAY-218', repo: 'payments-api', color: '#5EE89B', msg: 'Add ledger_entries v2 table and backfill job', add: '+214', del: '−12', when: '2h ago' },
+      { sha: '9be03d7', ticket: 'MOB-97', repo: 'mobile-app', color: '#F2C46D', msg: 'Theme tokens for settings screens', add: '+88', del: '−41', when: '5h ago' },
+      { sha: '3c7e512', ticket: 'ADM-37', repo: 'admin-portal', color: '#B9A4FF', msg: 'Stream audit log rows to CSV writer', add: '+131', del: '−9', when: '1d ago' },
+      { sha: 'f02a8b1', ticket: 'PAY-204', repo: 'payments-api', color: '#5EE89B', msg: 'Exponential backoff for capture retries', add: '+67', del: '−23', when: '2d ago' },
+      { sha: '71d4e90', ticket: 'MOB-88', repo: 'mobile-app', color: '#F2C46D', msg: 'Persist offline order queue to disk', add: '+302', del: '−54', when: '3d ago' }
+    ];
+    var commits = raw.map(function (c, i) {
+      c.lineTop = i === 0 ? 'transparent' : '#2A322B';
+      c.lineBottom = i === raw.length - 1 ? 'transparent' : '#2A322B';
+      return c;
+    });
+    return {
+      nav: [
+        { key: '1', label: 'Overview', count: '', fg: '#E6ECE6', bg: '#1A201B', keyColor: '#5EE89B' },
+        { key: '2', label: 'Commits', count: '248', fg: '#C7D2C8', bg: 'transparent', keyColor: '#8E9C8F' },
+        { key: '3', label: 'Tickets', count: '44', fg: '#C7D2C8', bg: 'transparent', keyColor: '#8E9C8F' },
+        { key: '4', label: 'Tasks', count: String(open), fg: '#C7D2C8', bg: 'transparent', keyColor: '#8E9C8F' },
+        { key: '5', label: 'Reports', count: '', fg: '#C7D2C8', bg: 'transparent', keyColor: '#8E9C8F' }
+      ],
+      repos: [
+        { name: 'payments-api', branch: 'main', count: 112, color: '#5EE89B' },
+        { name: 'mobile-app', branch: 'develop', count: 94, color: '#F2C46D' },
+        { name: 'admin-portal', branch: 'main', count: 42, color: '#B9A4FF' }
+      ],
+      ranges: ranges, rangeWord: words[self.state.range],
+      stats: [
+        { label: 'commits', value: '248', note: '▲ 18% vs prev', noteColor: '#5EE89B' },
+        { label: 'tickets closed', value: '37', note: '▲ 6 vs prev', noteColor: '#5EE89B' },
+        { label: 'lines', value: '+12.4k', note: '−5.1k removed', noteColor: '#8E9C8F' },
+        { label: 'active days', value: '54/65', note: 'streak · 12 days', noteColor: '#8E9C8F' }
+      ],
+      bars: bars, tasks: tasks, openCount: open, commits: commits,
+      draft: self.state.draft,
+      onDraft: function (e) { self.setState({ draft: e.target.value }); },
+      onKey: function (e) {
+        if (e.key !== 'Enter') return;
+        var text = (self.state.draft || '').trim();
+        if (!text) return;
+        var m = text.match(/([A-Z]+-\d+)\s*$/);
+        var title = (m ? text.slice(0, m.index) : text).trim();
+        self.setState({ draft: '', tasks: self.state.tasks.concat([{ title: title || text, ticket: m ? m[1] : '', done: false }]) });
+      },
+      tickets: [
+        { id: 'PAY-218', title: 'Ledger v2 schema migration', commits: 9, dot: '#6BA6FF' },
+        { id: 'ADM-37', title: 'Audit log export to CSV', commits: 7, dot: '#F2C46D' },
+        { id: 'MOB-88', title: 'Offline queue for order sync', commits: 26, dot: '#5EE89B' },
+        { id: 'PAY-204', title: 'Retry failed card captures', commits: 18, dot: '#5EE89B' },
+        { id: 'MOB-97', title: 'Dark mode for settings screens', commits: 12, dot: '#5EE89B' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

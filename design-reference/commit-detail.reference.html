@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Worklog — Commit detail</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap">
+<style>
+body{margin:0;background:#0F1210}
+a{color:#5EE89B}a:hover{color:#8DF2B9}
+</style>
+</helmet>
+<div style="min-height: 860px; display: flex; flex-wrap: wrap; background: #0F1210; color: #E6ECE6; font-family: 'IBM Plex Sans', system-ui, sans-serif">
+
+<nav aria-label="Main" style="flex: 1 1 210px; max-width: 100%; box-sizing: border-box; padding: 16px 12px; border-right: 1px solid #222823; background: #0C0F0D; display: flex; flex-direction: column; gap: 22px">
+<div style="display: flex; gap: 8px; padding: 2px 4px" aria-hidden="true">
+<span style="width: 12px; height: 12px; border-radius: 6px; background: #FF5F57"></span>
+<span style="width: 12px; height: 12px; border-radius: 6px; background: #FEBC2E"></span>
+<span style="width: 12px; height: 12px; border-radius: 6px; background: #28C840"></span>
+</div>
+<div style="display: flex; align-items: center; gap: 8px; padding: 0 6px; font: 600 16px 'IBM Plex Mono', monospace"><span style="color: #5EE89B">~/</span>worklog<span style="width: 8px; height: 17px; background: #5EE89B; display: inline-block" aria-hidden="true"></span></div>
+<div style="display: flex; flex-direction: column; gap: 2px">
+<a href="TerminalLite.dc.html" style="display: flex; align-items: center; gap: 10px; min-height: 36px; padding: 0 10px; border-radius: 8px; text-decoration: none; font-size: 14px; color: #C7D2C8"><span style="font: 500 12px 'IBM Plex Mono', monospace; color: #8E9C8F; width: 14px">1</span>Overview</a>
+<a href="#" style="display: flex; align-items: center; gap: 10px; min-height: 36px; padding: 0 10px; border-radius: 8px; text-decoration: none; font-size: 14px; color: #E6ECE6; background: #1A201B"><span style="font: 500 12px 'IBM Plex Mono', monospace; color: #5EE89B; width: 14px">2</span>Commits<span style="margin-left: auto; font: 12px 'IBM Plex Mono', monospace; color: #8E9C8F">248</span></a>
+<a href="#" style="display: flex; align-items: center; gap: 10px; min-height: 36px; padding: 0 10px; border-radius: 8px; text-decoration: none; font-size: 14px; color: #C7D2C8"><span style="font: 500 12px 'IBM Plex Mono', monospace; color: #8E9C8F; width: 14px">3</span>Tickets<span style="margin-left: auto; font: 12px 'IBM Plex Mono', monospace; color: #8E9C8F">44</span></a>
+<a href="#" style="display: flex; align-items: center; gap: 10px; min-height: 36px; padding: 0 10px; border-radius: 8px; text-decoration: none; font-size: 14px; color: #C7D2C8"><span style="font: 500 12px 'IBM Plex Mono', monospace; color: #8E9C8F; width: 14px">4</span>Tasks<span style="margin-left: auto; font: 12px 'IBM Plex Mono', monospace; color: #8E9C8F">4</span></a>
+<a href="#" style="display: flex; align-items: center; gap: 10px; min-height: 36px; padding: 0 10px; border-radius: 8px; text-decoration: none; font-size: 14px; color: #C7D2C8"><span style="font: 500 12px 'IBM Plex Mono', monospace; color: #8E9C8F; width: 14px">5</span>Reports</a>
+</div>
+<div style="display: flex; flex-direction: column; gap: 6px; padding: 0 10px">
+<div style="font: 500 11px 'IBM Plex Mono', monospace; color: #8E9C8F; padding-bottom: 4px">// same ticket · PAY-218</div>
+<sc-for list="{{related}}" as="r" hint-placeholder-count="4">
+<div style="display: flex; gap: 8px; align-items: baseline; font-size: 12px; color: {{r.fg}}"><span style="font: 11px 'IBM Plex Mono', monospace; color: #F2C46D">{{r.sha}}</span><span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap">{{r.msg}}</span></div>
+</sc-for>
+</div>
+</nav>
+
+<main style="flex: 999 1 560px; min-width: 0; box-sizing: border-box; padding: 22px 28px 32px; display: flex; flex-direction: column; gap: 16px">
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 10px; font: 12px 'IBM Plex Mono', monospace; color: #8E9C8F">
+<a href="TerminalLite.dc.html" style="display: inline-flex; align-items: center; gap: 6px; min-height: 32px; padding: 0 10px; border: 1px solid #2A322B; border-radius: 8px; text-decoration: none; color: #C7D2C8">← back</a>
+<span>commits</span><span>/</span><span>payments-api</span><span>/</span><span style="color: #F2C46D">a41f9c2</span>
+<div style="margin-left: auto; display: flex; gap: 6px">
+<button type="button" aria-label="Previous commit" style="width: 34px; height: 34px; border: 1px solid #2A322B; border-radius: 8px; background: #141815; color: #C7D2C8; cursor: pointer">↑</button>
+<button type="button" aria-label="Next commit" style="width: 34px; height: 34px; border: 1px solid #2A322B; border-radius: 8px; background: #141815; color: #C7D2C8; cursor: pointer">↓</button>
+</div>
+</div>
+
+<header style="border: 1px solid #222823; border-radius: 12px; background: #141815; padding: 18px 20px; display: flex; flex-direction: column; gap: 12px">
+<div style="display: flex; flex-wrap: wrap; align-items: flex-start; gap: 14px">
+<div style="flex: 1 1 360px; min-width: 0; display: flex; flex-direction: column; gap: 6px">
+<h1 style="margin: 0; font-size: 20px; font-weight: 600; letter-spacing: -0.01em">Add ledger_entries v2 table and backfill job</h1>
+<p style="margin: 0; font-size: 13px; color: #A9B5AA; line-height: 1.5">Creates the v2 schema alongside v1 and a batched job that copies existing rows. Reads still go through v1 until the cutover flag is enabled.</p>
+</div>
+<div style="display: flex; gap: 8px">
+<button type="button" style="min-height: 36px; padding: 0 12px; border: 1px solid #2A322B; border-radius: 8px; background: #0F1210; color: #C7D2C8; font: 500 12px 'IBM Plex Mono', monospace; cursor: pointer">copy sha</button>
+<button type="button" style="min-height: 36px; padding: 0 12px; border: 1px solid #2A322B; border-radius: 8px; background: #0F1210; color: #C7D2C8; font: 500 12px 'IBM Plex Mono', monospace; cursor: pointer">open in editor</button>
+</div>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 8px 18px; font: 12px 'IBM Plex Mono', monospace; color: #8E9C8F">
+<span>sha <span style="color: #F2C46D">a41f9c2</span></span>
+<span>ticket <span style="color: #5EE89B">PAY-218</span></span>
+<span>branch <span style="color: #C7D2C8">feat/ledger-v2</span></span>
+<span>Oct 27, 2026 · 19:42</span>
+<span>4 files · <span style="color: #5EE89B">+214</span> <span style="color: #F28B82">−12</span></span>
+</div>
+</header>
+
+<div style="display: flex; flex-wrap: wrap; gap: 14px; align-items: flex-start">
+<section aria-label="Changed files" style="flex: 1 1 250px; min-width: 0; border: 1px solid #222823; border-radius: 12px; background: #141815; padding: 10px; display: flex; flex-direction: column; gap: 2px">
+<div style="font: 500 11px 'IBM Plex Mono', monospace; color: #8E9C8F; padding: 6px 8px 8px">// changed files</div>
+<sc-for list="{{files}}" as="f" hint-placeholder-count="4">
+<button type="button" onClick="{{f.pick}}" style="display: flex; flex-direction: column; gap: 3px; align-items: stretch; text-align: left; min-height: 44px; padding: 8px 10px; border: 0; border-radius: 8px; background: {{f.bg}}; color: #E6ECE6; cursor: pointer">
+<span style="font: 500 12px 'IBM Plex Mono', monospace; color: {{f.fg}}; overflow: hidden; text-overflow: ellipsis; white-space: nowrap">{{f.name}}</span>
+<span style="display: flex; gap: 8px; font: 11px 'IBM Plex Mono', monospace; color: #8E9C8F"><span>{{f.dir}}</span><span style="margin-left: auto; color: #5EE89B">{{f.add}}</span><span style="color: #F28B82">{{f.del}}</span></span>
+</button>
+</sc-for>
+</section>
+
+<section aria-label="Diff" style="flex: 4 1 560px; min-width: 0; border: 1px solid #222823; border-radius: 12px; background: #141815; overflow: hidden">
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 10px; padding: 10px 14px; border-bottom: 1px solid #222823">
+<span style="font: 500 12px 'IBM Plex Mono', monospace">{{file.path}}</span>
+<sc-if value="{{file.isNew}}" hint-placeholder-val="{{ false }}"><span style="font: 500 10px 'IBM Plex Mono', monospace; color: #0B130E; background: #5EE89B; padding: 2px 6px; border-radius: 4px">NEW</span></sc-if>
+<div role="group" aria-label="Diff view" style="margin-left: auto; display: flex; gap: 4px; padding: 3px; border: 1px solid #2A322B; border-radius: 8px; background: #0F1210">
+<button type="button" onClick="{{showUnified}}" style="min-height: 30px; padding: 0 10px; border: 0; border-radius: 6px; background: {{uBg}}; color: {{uFg}}; font: 500 12px 'IBM Plex Mono', monospace; cursor: pointer">unified</button>
+<button type="button" onClick="{{showSplit}}" style="min-height: 30px; padding: 0 10px; border: 0; border-radius: 6px; background: {{sBg}}; color: {{sFg}}; font: 500 12px 'IBM Plex Mono', monospace; cursor: pointer">split</button>
+</div>
+</div>
+<div style="overflow-x: auto; font: 12px/1.7 'IBM Plex Mono', monospace">
+<sc-if value="{{unified}}" hint-placeholder-val="{{ true }}">
+<div style="min-width: 640px; padding: 6px 0">
+<sc-for list="{{uRows}}" as="l" hint-placeholder-count="14">
+<div style="display: flex; background: {{l.bg}}; white-space: pre">
+<span style="width: 44px; flex: none; text-align: right; padding-right: 8px; color: #5C6A5D">{{l.o}}</span>
+<span style="width: 44px; flex: none; text-align: right; padding-right: 8px; color: #5C6A5D">{{l.n}}</span>
+<span style="width: 18px; flex: none; color: {{l.signColor}}">{{l.sign}}</span>
+<span style="flex: 1; color: {{l.fg}}; padding-right: 14px">{{l.text}}</span>
+</div>
+</sc-for>
+</div>
+</sc-if>
+<sc-if value="{{split}}" hint-placeholder-val="{{ false }}">
+<div style="min-width: 900px; padding: 6px 0">
+<sc-for list="{{sRows}}" as="r" hint-placeholder-count="14">
+<div style="display: flex; white-space: pre">
+<div style="flex: 1; min-width: 0; display: flex; background: {{r.lBg}}; border-right: 1px solid #222823">
+<span style="width: 40px; flex: none; text-align: right; padding-right: 8px; color: #5C6A5D">{{r.lNo}}</span>
+<span style="flex: 1; overflow: hidden; color: {{r.lFg}}; padding-right: 10px">{{r.lText}}</span>
+</div>
+<div style="flex: 1; min-width: 0; display: flex; background: {{r.rBg}}">
+<span style="width: 40px; flex: none; text-align: right; padding-right: 8px; color: #5C6A5D">{{r.rNo}}</span>
+<span style="flex: 1; overflow: hidden; color: {{r.rFg}}; padding-right: 10px">{{r.rText}}</span>
+</div>
+</div>
+</sc-for>
+</div>
+</sc-if>
+</div>
+</section>
+</div>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":860}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { sel: 1, mode: 'unified' };
+  }
+  diffs() {
+    return [
+      { path: 'db/migrations/0042_ledger_entries_v2.sql', add: 38, del: 0, isNew: true, start: [0, 1], lines: [
+        ['h', '@@ -0,0 +1,14 @@'],
+        ['a', 'CREATE TABLE ledger_entries_v2 ('],
+        ['a', '  id           BIGSERIAL PRIMARY KEY,'],
+        ['a', '  account_id   BIGINT NOT NULL REFERENCES accounts(id),'],
+        ['a', '  amount_minor BIGINT NOT NULL,'],
+        ['a', '  currency     CHAR(3) NOT NULL,'],
+        ['a', '  direction    TEXT NOT NULL CHECK (direction IN (\'debit\', \'credit\')),'],
+        ['a', '  source_ref   TEXT,'],
+        ['a', '  created_at   TIMESTAMPTZ NOT NULL DEFAULT now()'],
+        ['a', ');'],
+        ['a', ''],
+        ['a', 'CREATE INDEX idx_ledger_v2_account_created'],
+        ['a', '  ON ledger_entries_v2 (account_id, created_at DESC);'],
+        ['a', ''],
+        ['a', 'CREATE UNIQUE INDEX idx_ledger_v2_source_ref ON ledger_entries_v2 (source_ref);']
+      ]},
+      { path: 'src/ledger/LedgerRepository.kt', add: 96, del: 12, isNew: false, start: [42, 42], lines: [
+        ['h', '@@ -42,14 +42,19 @@ class LedgerRepository('],
+        ['c', '    private val db: Database,'],
+        ['d', '    private val clock: Clock'],
+        ['a', '    private val clock: Clock,'],
+        ['a', '    private val flags: FeatureFlags'],
+        ['c', ') {'],
+        ['c', ''],
+        ['d', '    fun entriesFor(accountId: Long): List<LedgerEntry> ='],
+        ['d', '        db.query(SELECT_V1, accountId).map(::toEntry)'],
+        ['a', '    fun entriesFor(accountId: Long): List<LedgerEntry> {'],
+        ['a', '        val table = if (flags.isOn("ledger_v2_reads")) V2 else V1'],
+        ['a', '        return db.query(selectFrom(table), accountId).map(::toEntry)'],
+        ['a', '    }'],
+        ['c', ''],
+        ['c', '    fun append(entry: LedgerEntry) {'],
+        ['c', '        db.insert(V1, entry.toRow(clock.now()))'],
+        ['a', '        db.insert(V2, entry.toRowV2(clock.now()))'],
+        ['c', '    }']
+      ]},
+      { path: 'src/jobs/BackfillLedgerJob.kt', add: 72, del: 0, isNew: true, start: [0, 1], lines: [
+        ['h', '@@ -0,0 +1,12 @@'],
+        ['a', 'class BackfillLedgerJob(private val db: Database) {'],
+        ['a', '    private val batchSize = 5_000'],
+        ['a', ''],
+        ['a', '    fun run(fromId: Long = 0) {'],
+        ['a', '        var cursor = fromId'],
+        ['a', '        while (true) {'],
+        ['a', '            val rows = db.query(SELECT_V1_AFTER, cursor, batchSize)'],
+        ['a', '            if (rows.isEmpty()) break'],
+        ['a', '            db.insertAll(V2, rows.map { it.toV2() }, onConflict = IGNORE)'],
+        ['a', '            cursor = rows.last().id'],
+        ['a', '        }'],
+        ['a', '    }']
+      ]},
+      { path: 'src/ledger/LedgerRepositoryTest.kt', add: 8, del: 0, isNew: false, start: [88, 88], lines: [
+        ['h', '@@ -88,3 +88,11 @@ class LedgerRepositoryTest {'],
+        ['c', '        assertEquals(3, repo.entriesFor(ACCOUNT).size)'],
+        ['c', '    }'],
+        ['c', ''],
+        ['a', '    @Test'],
+        ['a', '    fun `reads from v2 when flag is on`() {'],
+        ['a', '        flags.enable("ledger_v2_reads")'],
+        ['a', '        repo.append(sampleEntry())'],
+        ['a', '        assertEquals(1, repo.entriesFor(ACCOUNT).size)'],
+        ['a', '        verify(db).query(contains("ledger_entries_v2"), any())'],
+        ['a', '    }'],
+        ['a', '']
+      ]}
+    ];
+  }
+  renderVals() {
+    var self = this;
+    var all = this.diffs();
+    var cur = all[this.state.sel];
+    var addBg = 'rgba(94,232,155,0.10)', delBg = 'rgba(242,139,130,0.11)', hunkBg = 'rgba(107,166,255,0.08)';
+    var files = all.map(function (f, i) {
+      var parts = f.path.split('/');
+      var on = i === self.state.sel;
+      return { name: parts[parts.length - 1], dir: parts.slice(0, -1).join('/'), add: '+' + f.add, del: '−' + f.del, bg: on ? '#1F2A22' : 'transparent', fg: on ? '#5EE89B' : '#E6ECE6', pick: function () { self.setState({ sel: i }); } };
+    });
+    var o = cur.start[0], n = cur.start[1];
+    var uRows = cur.lines.map(function (l) {
+      var t = l[0], text = l[1];
+      if (t === 'h') return { o: '', n: '', sign: '', text: text, bg: hunkBg, fg: '#8FB8FF', signColor: '#8FB8FF' };
+      if (t === 'a') { var r = { o: '', n: String(n), sign: '+', text: text, bg: addBg, fg: '#D9F5E4', signColor: '#5EE89B' }; n++; return r; }
+      if (t === 'd') { var r2 = { o: String(o), n: '', sign: '−', text: text, bg: delBg, fg: '#F8DAD7', signColor: '#F28B82' }; o++; return r2; }
+      var r3 = { o: String(o), n: String(n), sign: '', text: text, bg: 'transparent', fg: '#C7D2C8', signColor: '#8E9C8F' }; o++; n++; return r3;
+    });
+    var sRows = [];
+    var lo = cur.start[0], ln = cur.start[1];
+    var i = 0, L = cur.lines;
+    var empty = 'rgba(255,255,255,0.02)';
+    while (i < L.length) {
+      var t = L[i][0];
+      if (t === 'h') { sRows.push({ lNo: '', lText: L[i][1], lBg: hunkBg, lFg: '#8FB8FF', rNo: '', rText: '', rBg: hunkBg, rFg: '#8FB8FF' }); i++; continue; }
+      if (t === 'c') { sRows.push({ lNo: String(lo), lText: L[i][1], lBg: 'transparent', lFg: '#C7D2C8', rNo: String(ln), rText: L[i][1], rBg: 'transparent', rFg: '#C7D2C8' }); lo++; ln++; i++; continue; }
+      var dels = [], adds = [];
+      while (i < L.length && L[i][0] === 'd') { dels.push(L[i][1]); i++; }
+      while (i < L.length && L[i][0] === 'a') { adds.push(L[i][1]); i++; }
+      var m = Math.max(dels.length, adds.length);
+      for (var k = 0; k < m; k++) {
+        var hasD = k < dels.length, hasA = k < adds.length;
+        sRows.push({
+          lNo: hasD ? String(lo + k) : '', lText: hasD ? dels[k] : '', lBg: hasD ? delBg : empty, lFg: '#F8DAD7',
+          rNo: hasA ? String(ln + k) : '', rText: hasA ? adds[k] : '', rBg: hasA ? addBg : empty, rFg: '#D9F5E4'
+        });
+      }
+      lo += dels.length; ln += adds.length;
+    }
+    var uni = this.state.mode === 'unified';
+    return {
+      files: files, file: { path: cur.path, isNew: cur.isNew },
+      unified: uni, split: !uni, uRows: uRows, sRows: sRows,
+      uBg: uni ? '#243027' : 'transparent', uFg: uni ? '#5EE89B' : '#8E9C8F',
+      sBg: uni ? 'transparent' : '#243027', sFg: uni ? '#8E9C8F' : '#5EE89B',
+      showUnified: function () { self.setState({ mode: 'unified' }); },
+      showSplit: function () { self.setState({ mode: 'split' }); },
+      related: [
+        { sha: 'a41f9c2', msg: 'Add ledger_entries v2 table…', fg: '#E6ECE6' },
+        { sha: 'b7e1d40', msg: 'Dual-write to v1 and v2', fg: '#A9B5AA' },
+        { sha: '0d93c6a', msg: 'Feature flag for v2 reads', fg: '#A9B5AA' },
+        { sha: 'e5c2f18', msg: 'Migration plan doc', fg: '#A9B5AA' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>
